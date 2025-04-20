@@ -1,12 +1,17 @@
 const palindromes = function (word) {
-    // Remove any punctuation from the original string
-    const noPunctuationWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").toLowerCase();
+    // Pattern that detects all punctuation and whitespace respectively
+    const punctuationRe = /\p{P}/gu;
+    const whiteSpaceRe = /\s/g;
 
-    // Split the string into an array, reverse it, then join it back into a string
-    const reversedWord = noPunctuationWord.split().reverse().join('');
+    // Remove all punctuation and convert to lowercase
+    const noPunctuation = word.replace(punctuationRe, '').toLowerCase();
+    // Remove any and all whitespace from the string next
+    const strippedWord = noPunctuation.replace(whiteSpaceRe, '');
 
-    return reversedWord === noPunctuationWord;
-};
+    // Reverse the word
+    const reversedWord = strippedWord.split('').reverse().join('');
 
+    return reversedWord === strippedWord;
+}
 // Do not edit below this line
 module.exports = palindromes;
