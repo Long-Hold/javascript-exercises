@@ -27,5 +27,26 @@ const findTheOldest = function(people) {
     }, people[0]);
 };
 
+function getPersonAge(person) {
+    /*
+
+    Usage:
+        Calculates the age of a person based on their birth year and death year.
+        If person.yearOfDeath is undefined, then it uses the current year in its place.
+        
+    Parameters:
+        person: Object
+    
+    Returns:
+        age: int */
+    
+    const d = new Date();
+    const currentYear = d.getFullYear();
+
+    return person.yearOfDeath === undefined
+    ? currentYear - person.yearOfBirth
+    : person.yearOfDeath - person.yearOfBirth;
+}
+
 // Do not edit below this line
 module.exports = findTheOldest;
