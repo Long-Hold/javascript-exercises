@@ -5,7 +5,7 @@ describe("permutations", () => {
     expect(permutations([])).toEqual([[]]);
   });
 
-  test.skip("1 possible permutation for a set containing 1 number", () => {
+  test("1 possible permutation for a set containing 1 number", () => {
     expect(permutations([1])).toEqual([[1]]);
   });
 
