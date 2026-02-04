@@ -17,9 +17,8 @@ const pascal = function(n, currentRow = [1]) {
     if (n === 1) return currentRow;
 
     const nextRow = [1];
-    // I do array.length - 1 because the first value has already been created
-    // Basically we start from the left edge of the nextRow already, and the
-    // length - 1 saves the final spot to add 1
+    // Iterate through adjacent pairs in currentRow (i and i+1).
+    // Stop at length-1 to avoid out-of-bounds access on currentRow[i+1].
     for (let i = 0; i < currentRow.length - 1; ++i) {
         nextRow.push(currentRow[i] + currentRow[i + 1]);
     }
