@@ -1,25 +1,25 @@
-const permutations = function (array, index = 0, results = []) {
-  if (index == array.length) {
-    // We have formed a valid permutation.
-
-    // the [...array] syntax is a way to clone the contents of the array.
-    // because we do not want to pass a reference to the array, as that would mean
-    // that each item in `results` will be the same item
+// K represents how many elements are being permuted
+const permutations = function (array, k = array.length, results = []) {
+  if (k <= 0) {
+    return [[]];
+  }
+  if (k === 1) {
     results.push([...array]);
     return results;
-  }
+  } else {
+    permutations(array, k - 1, results);
+    for (let i = 0; i < k - 1; ++i) {
+      if (k % 2 === 0) {
+        [array[i], array[k - 1]] = [array[k-1], array[i]];
+      } else {
+        [array[0], array[k-1]] = [array[k-1], array[0]];
+      }
 
-  for (let i = index; i < array.length; i++) {
-    // We use "destructuring assignment" here to swap the values of array[index] and array[i]
-    //
-    // More info: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-    [array[index], array[i]] = [array[i], array[index]];
-    permutations(array, index + 1, results);
-    [array[index], array[i]] = [array[i], array[index]];
+      permutations(array, k - 1, results);
+    }
+    return results;
   }
-
-  return results;
-};
+}
   
 // Do not edit below this line
 module.exports = permutations;
